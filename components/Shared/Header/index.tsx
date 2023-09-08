@@ -8,6 +8,7 @@ import { USER_STATE } from "../../../state";
 import { useAtom } from "jotai";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Header() {
   const router = useRouter();
@@ -31,17 +32,21 @@ export default function Header() {
   return (
     <nav className="flex items-center justify-between h-16 px-4 shadow-md">
       <Link href="/">
-        <span className="text-lg font-bold text-blue-900">amazon</span>
+        <span className="text-lg font-bold text-blue-900">simple amazon</span>
       </Link>
       <div className="flex gap-[20px]">
         <Link href="/cart">
-          <span className="relative mr-[20px]">
-            Cart {/* {cartItemCount > 0 && ( */}
-            <span className="px-2 py-1 absolute top-[-8px] left-[28px] text-xs font-bold text-white bg-red-500 rounded-full">
+          <div className="relative mr-[5px] flex items-center">
+            <Image
+              src="/images/cart-icon.svg"
+              alt="cart icon"
+              width={30}
+              height={30}
+            ></Image>
+            <span className="px-2 py-1 absolute top-[-8px] left-[20px] text-xs font-bold text-white bg-red-500 rounded-full">
               {cartItemCount > 0 ? cartItemCount : 0}
             </span>
-            {/* )} */}
-          </span>
+          </div>
         </Link>
         {user && user?.name ? (
           <Menu as="div" className="relative inline-block">

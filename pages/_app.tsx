@@ -10,10 +10,11 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
   const [user, setUser] = useAtom(USER_STATE);
+  const token = getCookie("auth");
 
   useEffect(() => {
     (async () => {
-      if (user && user?._id) {
+      if (user && user?._id && token) {
         const response = await api.get(`/user/${user._id}`);
         const userData = {
           name: response?.data?.name,
