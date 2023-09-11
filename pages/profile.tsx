@@ -21,7 +21,6 @@ function Profile() {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -36,11 +35,11 @@ function Profile() {
     if (loading) return;
     setLoading(true);
     try {
-      const response = await api.put("/auth/user", formData);
+      const response = await api.put(`/auth/${user._id}`, formData);
       const userData = {
-        name: response?.data?.user?.name,
-        email: response?.data?.user?.email,
-        _id: response?.data?.user?._id,
+        name: response?.data?.name,
+        email: response?.data?.email,
+        _id: response?.data?._id,
       };
       setUser(userData);
       setLoading(false);
@@ -90,7 +89,7 @@ function Profile() {
               </span>
             )}
           </div>
-          <button className="primary-button my-[20px]" type="submit">
+          <button className="primary-button mt-[20px]" type="submit">
             {loading ? "Loading..." : "Update"}
           </button>
         </form>

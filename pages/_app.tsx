@@ -48,7 +48,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
 
 function Auth({ children }) {
   const router = useRouter();
-  const { redirect }: any = router.query;
   const [user, setUser] = useAtom(USER_STATE);
   const token = getCookie("auth");
 
@@ -57,7 +56,7 @@ function Auth({ children }) {
       setUser(undefined);
       router.push("/login");
     }
-  }, [token, router, redirect, setUser]);
+  }, [token, router, setUser]);
 
   return children;
 }

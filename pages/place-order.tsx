@@ -11,8 +11,9 @@ import Cookies from "js-cookie";
 import { api } from "./api";
 import { useAtom } from "jotai";
 import { USER_STATE } from "../state";
+import dynamic from "next/dynamic";
 
-export default function PlaceOrderScreen() {
+function PlaceOrderScreen() {
   const router = useRouter();
   const [user] = useAtom(USER_STATE);
   const [loading, setLoading] = useState(false);
@@ -172,3 +173,5 @@ export default function PlaceOrderScreen() {
 }
 
 PlaceOrderScreen.auth = true;
+
+export default dynamic(() => Promise.resolve(PlaceOrderScreen), { ssr: false });

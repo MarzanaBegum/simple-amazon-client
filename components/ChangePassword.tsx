@@ -17,8 +17,8 @@ export default function ChangePassword() {
   const {
     register,
     handleSubmit,
-    setValue,
     getValues,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -26,11 +26,9 @@ export default function ChangePassword() {
     if (loading) return;
     setLoading(true);
     try {
-      const response = await api.put("/auth/user", {
-        password: formData.password,
-        email: user.email,
-      });
+      const response = await api.put(`/auth/${user._id}`, formData);
       setLoading(false);
+      reset();
       toast.success("Password changed successfully");
     } catch (err) {
       toast.error(getError(err));
@@ -83,7 +81,7 @@ export default function ChangePassword() {
             <span className="text-red-500">Password not match</span>
           )}
       </div>
-      <button className="primary-button my-[20px]" type="submit">
+      <button className="primary-button mt-[20px]" type="submit">
         {loading ? "Loading..." : "Update"}
       </button>
     </form>
