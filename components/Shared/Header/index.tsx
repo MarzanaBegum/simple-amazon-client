@@ -18,7 +18,6 @@ export default function Header() {
   const [user, setUser] = useAtom(USER_STATE);
 
   const logoutClickHandler = async () => {
-    Cookies.remove("cart");
     dispatch({ type: "CART_RESET" });
     deleteCookie("auth");
     setUser(undefined);
