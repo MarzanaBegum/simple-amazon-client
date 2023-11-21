@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
       <PayPalScriptProvider
         deferLoading={true}
         options={{
-          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+          clientId: `${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}`,
           // "disable-funding": "credit,card,p24,venmo",
         }}
       >
