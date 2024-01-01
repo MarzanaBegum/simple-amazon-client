@@ -62,7 +62,7 @@ export default function Home() {
           ) : error ? (
             <div className="text-red-700">{error}</div>
           ) : (
-            products.map((product) => (
+            products.map((product:any) => (
               <ProductItem
                 key={product.slug}
                 product={product}
