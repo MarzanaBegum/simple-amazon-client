@@ -43,7 +43,7 @@ export default function Home() {
 
   const handleAddToCart = async (product) => {
     const existingItem = cart.cartItems.find(
-      (item) => item.name === product.name
+      (item:any) => item.name === product.name
     );
     const quantity = existingItem ? existingItem.quantity + 1 : 1;
     const { data } = await api.get(`/products/${product._id}`);
